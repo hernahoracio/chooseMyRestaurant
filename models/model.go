@@ -3,13 +3,13 @@ package models
 import "encoding/json"
 
 type Restaurant struct {
-	ID        string `json:"id"`
-	Name      string `json:"name"`
-	Location  string `json:"address"`
-	Latitude  string `json:"latitude"`
-	Longitude string `json:"longitude"`
-	Cuisine   string `json:"cuisine"`
-	Rating    string `json:"rating"`
+	ID        string  `json:"id"`
+	Name      string  `json:"name"`
+	Location  string  `json:"address"`
+	Latitude  float64 `json:"latitude"`
+	Longitude float64 `json:"longitude"`
+	Cuisine   string  `json:"cuisine"`
+	Rating    float64 `json:"rating"`
 }
 
 func (r Restaurant) MarshalJSON() ([]byte, error) {

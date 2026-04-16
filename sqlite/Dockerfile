@@ -2,4 +2,7 @@ FROM apline:latest
 
 RUN apk add --no-cache sqlite
 WORKDIR /db
-CMD ["sqlite3"]
+
+COPY schema.sql /db/schema.sql
+
+CMD ["sqlite3", "chooseMyRestaurant.db"]

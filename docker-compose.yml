@@ -1,15 +1,15 @@
 version: "3.8"
 services:
   cmr:
-  build: ./cmr
-  ports: 
-    - "8085:8085"
-  depends_on:
-      - sqlite-db
-  environment:
-    - DATABASE_URL=/db/yourdb.sqlite
-  volumes:
-    - ./restaurantData:/db
+    build: ./cmr
+    ports: 
+      - "8085:8085"
+    depends_on:
+        - sqlite-db
+    environment:
+      - DATABASE_URL=/db/yourdb.sqlite
+    volumes:
+      - ./restaurantData:/db
 
   sqlite-db:
     build: .

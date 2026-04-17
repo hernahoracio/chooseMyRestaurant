@@ -3,8 +3,9 @@ package server
 import (
 	"net/http"
 
+	"chooseMyRestaurant/repo"
+
 	"github.com/gin-gonic/gin"
-	"github.com/hernahoracio/chooseMyRestaurant/repo"
 )
 
 type Server struct {

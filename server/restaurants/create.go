@@ -2,6 +2,7 @@ package restaurants
 
 import (
 	"chooseMyRestaurant/models"
+	"chooseMyRestaurant/repo"
 	"chooseMyRestaurant/repo/dto"
 	"context"
 	"errors"
@@ -21,7 +22,7 @@ type createHandler struct {
 }
 
 type createRequest struct {
-	models.Restaurant
+	models.CreateRestaurantInput
 }
 
 func (h *createHandler) Handle(c *gin.Context) {
@@ -34,7 +35,7 @@ func (h *createHandler) Handle(c *gin.Context) {
 	if err != nil {
 		if errors.Is(err, repo.ErrConflict) {
 			c.JSON(http.StatusConflict, gin.H{
-				"error", "restaurant already exists",
+				"error": "restaurant already exists",
 			})
 			return
 		}
@@ -49,6 +50,8 @@ func (h *createHandler) Handle(c *gin.Context) {
 			return
 		}
 	}
+
+	c.JSON(http.StatusOK, r.ToModel())
 
 }
 

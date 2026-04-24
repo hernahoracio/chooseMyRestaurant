@@ -30,15 +30,15 @@ type PlacesAPIRequest struct {
 type Restaurants struct {
 }
 
-func GetRestaurant(Coordinates) ([]byte, error) {
+func GetRestaurant(coordinates Coordinates, url string, apiKey string, params string) ([]byte, error) {
 	reqBody := PlacesAPIRequest{
 		IncludedTypes:  []string{"restaurant"},
 		MaxResultCount: 10,
 		LocationRestriction: LocationRestriction{
 			Circle: Circle{
 				Center: LatLng{
-					Latitude:  Coordinates.Latitude,
-					Longitude: Coordinates.Longitude,
+					Latitude:  coordinates.Latitude,
+					Longitude: coordinates.Longitude,
 				},
 				Radius: 500.0,
 			},

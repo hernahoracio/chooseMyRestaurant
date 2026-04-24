@@ -1,19 +1,34 @@
 package main
 
 import (
+	"chooseMyRestaurant/internal"
 	"fmt"
-	"math/rand"
+	"os"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	_ = godotenv.Load()
+	cfg, err := loadConfig()
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
 
-	restaurants := []string{"Denny's @ Palomar", "Denny's @ Zapopan"}
-	moreRestaurants := []string{"Panda Express", "Carl's JR", "Dave's Hot Chicken"}
+	provider := internal.CoreLocationCLI{}
+	coords, err := provider.GetCoordinates()
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
 
-	restaurants = append(restaurants, moreRestaurants...)
+	body, err := internal.GetRestaurant(coords, cfg.PlacesBaseURL, cfg.API_Key, cfg.Parameters)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
 
-	randomIndex := rand.Intn(len(restaurants))
-
-	fmt.Printf("----- You should eat at: %s -----\n", restaurants[randomIndex])
+	fmt.Printf("Restaurants near you: %s", body)
 
 }

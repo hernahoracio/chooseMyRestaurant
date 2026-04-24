@@ -20,7 +20,7 @@ func (s *Server) Engine() *gin.Engine {
 	eng.GET("/health", func(c *gin.Context) { c.Status(http.StatusOK) })
 
 	//external API for GPS coordinates and restaurant locations
-	api := eng.Group()
+	api := eng.Group("/")
 	restaurantsHandler := api.Group("/restaurants")
 	restaurantsHandler.GET("")
 

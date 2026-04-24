@@ -38,7 +38,7 @@ type RestaurantQuery struct {
 }
 
 func (rQ *RestaurantQuery) Query() (url.Values, error) {
-	return query.Value(rQ)
+	return query.Values(rQ)
 }
 
 func (r Restaurant) MarshalJSON() ([]byte, error) {

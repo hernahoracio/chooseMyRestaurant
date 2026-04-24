@@ -46,5 +46,5 @@ func (p CoreLocationCLI) GetCoordinates() (Coordinates, error) {
 	if err != nil {
 		return Coordinates{}, err
 	}
-	return Coordinates{latitude: latitude, longitude: longitude}, nil
+	return Coordinates{Latitude: latitude, Longitude: longitude}, nil
 }
